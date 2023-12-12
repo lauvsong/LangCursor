@@ -9,6 +9,12 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable
+                parentId="tools"
+                instance="com.github.lauvsong.languagecursor.settings.AppSettingsConfigurable"
+                id="com.github.lauvsong.languagecursor.settings.AppSettingsConfigurable"
+                displayName="Language Cursor"
+        />
     </extensions>
 
     <applicationListeners>
