@@ -7,13 +7,13 @@ import javax.swing.JPanel
 import javax.swing.JTextField
 
 class AppSettingsComponent {
-    private val mainPanel: JPanel by lazy {
+    val mainPanel: JPanel by lazy {
         FormBuilder.createFormBuilder()
-            .addLabeledComponent(JBLabel("Language transform keymap: "), keymapField, 1, false)
-            .addLabeledComponent(JBLabel("Cursor color: "), cursorColorField, 1, false)
+            .addLabeledComponent(JBLabel("Language transform keymap: "), keymap, 1, false)
+            .addLabeledComponent(JBLabel("Cursor color: "), cursorColor, 1, false)
             .addComponentFillVertically(JPanel(), 0)
             .panel
     }
-    private val keymapField: JTextField = JTextField()
-    private val cursorColorField: ColorPanel = ColorPanel()
+    val keymap: JTextField = JTextField()
+    val cursorColor: ColorPanel = ColorPanel()
 }
