@@ -11,6 +11,19 @@ class ProjectOpenStartUpActivity : StartupActivity.DumbAware {
         val editorFactory = EditorFactory.getInstance()
         val listener = NotEnglishKeyListener()
         editorFactory.eventMulticaster.addCaretListener(listener, project)
+        if (isNotSupportedOs()) {
+            notifyNotSupportedOs(project)
+        }
+
+    private fun isNotSupportedOs(): Boolean {
+        return !(SystemUtils.IS_OS_WINDOWS || SystemUtils.IS_OS_MAC)
+    }
+
+    private fun notifyNotSupportedOs(project: Project) {
+        NotifyUtil.byBalloonWarning(project, """
+            Language Cursor may not supported on your OS.
+            Windows and macOS are supported.
+        """.trimIndent())
     }
 
 }
