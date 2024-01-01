@@ -1,29 +1,22 @@
-package com.github.lauvsong.languagecursor.listeners
+package com.github.lauvsong.languagecursor
 
 import com.github.lauvsong.languagecursor.settings.AppSettingsState
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.editor.colors.EditorColors
 import com.intellij.openapi.editor.colors.EditorColorsManager
-import com.intellij.openapi.editor.event.CaretEvent
-import com.intellij.openapi.editor.event.CaretListener
 import com.intellij.ui.JBColor
 import java.awt.Color
 import java.awt.im.InputContext
 import java.util.Locale
 
-class NotEnglishKeyListener : CaretListener {
+object CursorColorManager {
 
     private val originalCursorColor: Color = EditorColorsManager.getInstance()
         .globalScheme
         .getColor(EditorColors.CARET_COLOR)
         ?: JBColor.BLACK
 
-    override fun caretPositionChanged(event: CaretEvent) {
-        val editor = event.editor
-        updateCursorColor(editor)
-    }
-
-    private fun updateCursorColor(editor: Editor) {
+    fun updateCursorColor(editor: Editor) {
         val settings = AppSettingsState.instance
         val isEnglishInput = isEnglishInput()
         val cursorColor = if (!isEnglishInput) settings.cursorColor else editor.colorsScheme.defaultForeground
