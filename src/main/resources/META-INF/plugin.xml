@@ -16,8 +16,6 @@
                 displayName="Language Cursor"
         />
         <applicationService serviceImplementation="com.github.lauvsong.languagecursor.settings.AppSettingsState"/>
+        <postStartupActivity implementation="com.github.lauvsong.languagecursor.ProjectOpenStartUpActivity"/>
     </extensions>
-
-    <applicationListeners>
-    </applicationListeners>
 </idea-plugin>
