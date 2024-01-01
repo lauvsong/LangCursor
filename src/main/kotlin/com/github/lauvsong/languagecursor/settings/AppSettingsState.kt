@@ -1,31 +1,33 @@
 package com.github.lauvsong.languagecursor.settings
 
-import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import com.intellij.openapi.components.service
 import com.intellij.ui.JBColor
 import com.intellij.util.xmlb.XmlSerializerUtil
-import org.jetbrains.annotations.NotNull
 import java.awt.Color
 
 @State(
     name = "com.github.lauvsong.languagecursor.settings.AppSettingsState",
     storages = [Storage("AppSettingsState.xml")]
 )
-internal class AppSettingsState : PersistentStateComponent<AppSettingsState> {
-    var keymap: String = ""
-    var cursorColor: Color = JBColor.BLUE
+class AppSettingsState : PersistentStateComponent<AppSettingsState> {
+    var cursorColorAsRgb: Int = JBColor.RED.rgb
 
-    override fun getState(): AppSettingsState = this
+    val cursorColor: Color
+        get() = Color(cursorColorAsRgb)
 
-    override fun loadState(@NotNull state: AppSettingsState) {
+    override fun getState(): AppSettingsState {
+        return this
+    }
+
+    override fun loadState(state: AppSettingsState) {
         XmlSerializerUtil.copyBean(state, this)
     }
 
     companion object {
         val instance: AppSettingsState
-            get() = ApplicationManager.getApplication().service()
+            get() = service()
     }
 }

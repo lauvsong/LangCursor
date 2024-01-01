@@ -17,19 +17,16 @@ class AppSettingsConfigurable : Configurable {
 
     override fun isModified(): Boolean {
         val settings = AppSettingsState.instance
-        return !((settings.keymap == settingsComponent.keymap.text)
-                && (settings.cursorColor == settingsComponent.cursorColor.selectedColor))
+        return settings.cursorColor != settingsComponent.cursorColor
     }
 
     override fun apply() {
         val settings = AppSettingsState.instance
-        settings.keymap = settingsComponent.keymap.text
-        settings.cursorColor = settingsComponent.cursorColor.selectedColor ?: settings.cursorColor
+        settings.cursorColorAsRgb = settingsComponent.cursorColor.selectedColor?.rgb ?: settings.cursorColorAsRgb
     }
 
     override fun reset() {
         val settings = AppSettingsState.instance
-        settingsComponent.keymap.text = settings.keymap
         settingsComponent.cursorColor.selectedColor = settings.cursorColor
     }
 }
