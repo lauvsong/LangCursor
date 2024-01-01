@@ -15,5 +15,10 @@
         />
         <applicationService serviceImplementation="com.github.lauvsong.languagecursor.settings.AppSettingsState"/>
         <postStartupActivity implementation="com.github.lauvsong.languagecursor.ProjectOpenStartUpActivity"/>
+        <notificationGroup
+                id="balloon"
+                displayType="BALLOON"
+                key="balloon"
+        />
     </extensions>
 </idea-plugin>
