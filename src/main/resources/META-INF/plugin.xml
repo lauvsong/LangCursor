@@ -15,6 +15,7 @@
                 id="com.github.lauvsong.languagecursor.settings.AppSettingsConfigurable"
                 displayName="Language Cursor"
         />
+        <applicationService serviceImplementation="com.github.lauvsong.languagecursor.settings.AppSettingsState"/>
     </extensions>
 
     <applicationListeners>
