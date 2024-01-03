@@ -1,6 +1,6 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# language-cursor Changelog
+# LangCursor Changelog
 
 ## [Unreleased]
 ### Added

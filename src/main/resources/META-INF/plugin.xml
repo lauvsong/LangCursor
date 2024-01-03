@@ -1,18 +1,24 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.lauvsong.languagecursor</id>
-    <name>language-cursor Template</name>
+    <id>com.github.lauvsong.langcursor</id>
+    <name>LangCursor</name>
     <vendor>lauvsong</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
-
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.lauvsong.languagecursor.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <applicationConfigurable
+                parentId="tools"
+                instance="com.github.lauvsong.langcursor.settings.AppSettingsConfigurable"
+                id="com.github.lauvsong.langcursor.settings.AppSettingsConfigurable"
+                displayName="LangCursor"
+        />
+        <applicationService serviceImplementation="com.github.lauvsong.langcursor.settings.AppSettingsState"/>
+        <postStartupActivity implementation="com.github.lauvsong.langcursor.ProjectOpenStartUpActivity"/>
+        <notificationGroup
+                id="balloon"
+                displayType="BALLOON"
+                key="balloon"
+        />
     </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.lauvsong.languagecursor.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
 </idea-plugin>

@@ -1,1 +1,1 @@
-rootProject.name = "language-cursor"
+rootProject.name = "LangCursor"
