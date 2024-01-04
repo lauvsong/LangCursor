@@ -10,7 +10,7 @@ class AppSettingsConfigurable : Configurable {
     override fun getDisplayName(): String =
         "LangCursor"
 
-    override fun createComponent(): JComponent? {
+    override fun createComponent(): JComponent {
         settingsComponent = AppSettingsComponent()
         return settingsComponent.mainPanel
     }
