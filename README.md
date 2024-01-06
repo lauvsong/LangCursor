@@ -12,13 +12,13 @@
 LangCursor is a plugin designed for IntelliJ-based JetBrains IDEs.
 
 It's a handy tool for **developers who work in multiple languages**.
-<!-- Plugin description end -->
 
 ### Key Feature: Avoiding Typos through Cursor Color Change
 - Automatic Cursor Color Change
   - The primary function of LangCursor is to help you avoid typos. It does this by **automatically changing the color of your cursor when you're typing in a non-English language**.
 - Compatibility with Insert Mode
   - LangCursor also integrates seamlessly with the 'Insert Mode' cursor, a feature commonly used in conjunction with Vim emulation plugins.<!-- Plugin description end -->
+<!-- Plugin description end -->
 
 ## How to Use
 Once installed, LangCursor will automatically change your cursor color when the input method is not English.
