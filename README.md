@@ -1,8 +1,8 @@
 # LangCursor
 
 ![Build](https://github.com/lauvsong/LangCursor/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/23464.svg)](https://plugins.jetbrains.com/plugin/23464)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/23464.svg)](https://plugins.jetbrains.com/plugin/23464)
 
 > IntellJ-based JetBrains IDEs plugin, to avoid typo for developers who work in multiple languages.
 
