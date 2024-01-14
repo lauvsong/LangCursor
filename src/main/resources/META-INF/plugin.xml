@@ -21,4 +21,11 @@
                 key="balloon"
         />
     </extensions>
+
+    <applicationListeners>
+        <listener
+                topic="com.intellij.ide.AppLifecycleListener"
+                class="com.github.lauvsong.langcursor.IdeLifeCycleListener"
+        />
+    </applicationListeners>
 </idea-plugin>
