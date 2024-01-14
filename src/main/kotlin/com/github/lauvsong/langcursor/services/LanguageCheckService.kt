@@ -11,7 +11,11 @@ object LanguageCheckService {
     private val scheduledExecutor: ScheduledExecutorService = Executors.newScheduledThreadPool(1)
     private const val INTERVAL_MILLIS = 200L
 
-    fun start() {
+    init {
+        start()
+    }
+
+    private fun start() {
         scheduledExecutor.scheduleAtFixedRate(
             { switchCursorColorByLanguage() },
             0,
