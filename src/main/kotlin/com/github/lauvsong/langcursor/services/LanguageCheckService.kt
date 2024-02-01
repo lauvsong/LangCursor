@@ -1,6 +1,9 @@
 package com.github.lauvsong.langcursor.services
 
 import java.awt.im.InputContext
+import com.github.lauvsong.langcursor.utils.LanguageUtil
+import com.jcraft.jsch.agentproxy.connector.PageantConnector.User32
+import org.apache.commons.lang3.SystemUtils
 import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
@@ -37,24 +40,31 @@ object LanguageCheckService {
     }
 
     private fun isEnglishInput(): Boolean {
-        val locale = InputContext.getInstance().locale
-        val language = locale.language
-        val country = locale.country
 
-        // Explanation for not solely relying on constant `Locale.ENGLISH`:
-        // In some Locale configurations, the language code might not be explicitly provided.
-        // e.g., "_US_UserDefined_252"
-        // Therefore, Locales with country codes are also considered as English input.
-        // Canada (CA) is not included here because both English and French are used in Canada.
-        // ** If you encounter any edge cases, please feel free to open an issue on GitHub. **
-        if (language == Locale.ENGLISH.language) {
-            return true
+        if (SystemUtils.IS_OS_WINDOWS){
+            var hwnd = User32.INSTANCE.GetForegroundWindow()
+
+            if (hwnd == null)
+                return false
+
+            val isEnglish: Boolean = LanguageUtil.INSTANCE.isEnglish(hwnd.pointer)
+
+            if (isEnglish)
+                return true
+
+            return false
         }
+        else
+        {
+            val locale = InputContext.getInstance().locale
+            val language = locale.language
+            val country = locale.country
 
-        if (country == Locale.US.country
-            || country == Locale.UK.country
-        ) {
-            return true
+            if (language == Locale.ENGLISH.language)
+                return true
+
+            if (country == Locale.US.country || country == Locale.UK.country)
+                return true
         }
 
         return false
