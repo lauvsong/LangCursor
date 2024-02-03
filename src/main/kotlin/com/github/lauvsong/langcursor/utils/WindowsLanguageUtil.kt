@@ -4,10 +4,10 @@ import com.sun.jna.Library
 import com.sun.jna.Native
 import com.sun.jna.Pointer
 
-interface LanguageUtil : Library {
+interface WindowsLanguageUtil : Library {
     fun isEnglish(hWnd: Pointer?): Boolean
 
     companion object {
-        val INSTANCE: LanguageUtil = Native.load("LanguageUtility", LanguageUtil::class.java)
+        val INSTANCE: WindowsLanguageUtil = Native.load("LanguageUtility", WindowsLanguageUtil::class.java)
     }
 }
