@@ -1,5 +1,8 @@
 package com.github.lauvsong.langcursor.services
 
+import com.github.lauvsong.langcursor.utils.LanguageUtil
+import com.jcraft.jsch.agentproxy.connector.PageantConnector.User32
+import org.apache.commons.lang3.SystemUtils
 import java.awt.im.InputContext
 import java.util.*
 import java.util.concurrent.Executors
@@ -8,10 +11,15 @@ import java.util.concurrent.TimeUnit
 
 object LanguageCheckService {
 
+    private val languageCheckStrategy: LanguageCheckStrategy = setLanguageCheckStrategy()
     private val scheduledExecutor: ScheduledExecutorService = Executors.newScheduledThreadPool(1)
     private const val INTERVAL_MILLIS = 200L
 
-    fun start() {
+    init {
+        start()
+    }
+
+    private fun start() {
         scheduledExecutor.scheduleAtFixedRate(
             { switchCursorColorByLanguage() },
             0,
@@ -25,34 +33,38 @@ object LanguageCheckService {
     }
 
     private fun switchCursorColorByLanguage() {
-        if (isEnglishInput()) {
+        if (languageCheckStrategy.isEnglishInput()) {
             CursorColorService.toOriginalCursorColor()
         } else {
             CursorColorService.toNotEnglishCursorColor()
         }
     }
 
-    private fun isEnglishInput(): Boolean {
-        val locale = InputContext.getInstance().locale
-        val language = locale.language
-        val country = locale.country
-
-        // Explanation for not solely relying on constant `Locale.ENGLISH`:
-        // In some Locale configurations, the language code might not be explicitly provided.
-        // e.g., "_US_UserDefined_252"
-        // Therefore, Locales with country codes are also considered as English input.
-        // Canada (CA) is not included here because both English and French are used in Canada.
-        // ** If you encounter any edge cases, please feel free to open an issue on GitHub. **
-        if (language == Locale.ENGLISH.language) {
-            return true
+    private fun setLanguageCheckStrategy(): LanguageCheckStrategy =
+        if (SystemUtils.IS_OS_WINDOWS) {
+            windowsLanguageCheckStrategy
+        }  else {
+            defaultLanguageCheckStrategy
         }
+}
 
-        if (country == Locale.US.country
+fun interface LanguageCheckStrategy {
+    fun isEnglishInput(): Boolean
+}
+
+val defaultLanguageCheckStrategy = LanguageCheckStrategy {
+    val locale = InputContext.getInstance().locale
+    val language = locale.language
+    val country = locale.country
+
+    language == Locale.ENGLISH.language
+            || country == Locale.US.country
             || country == Locale.UK.country
-        ) {
-            return true
-        }
+}
 
-        return false
-    }
+val windowsLanguageCheckStrategy = LanguageCheckStrategy {
+    User32.INSTANCE.GetForegroundWindow()
+        ?.let { hwnd ->
+            LanguageUtil.INSTANCE.isEnglish(hwnd.pointer)
+        } ?: false
 }
