@@ -1,10 +1,9 @@
 package com.github.lauvsong.langcursor.services
 
-import com.github.lauvsong.langcursor.utils.LanguageUtil
-import com.jcraft.jsch.agentproxy.connector.PageantConnector.User32
+import com.github.lauvsong.langcursor.core.LanguageCheckStrategy
+import com.github.lauvsong.langcursor.core.defaultLanguageCheckStrategy
+import com.github.lauvsong.langcursor.core.windowsLanguageCheckStrategy
 import org.apache.commons.lang3.SystemUtils
-import java.awt.im.InputContext
-import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
@@ -46,25 +45,4 @@ object LanguageCheckService {
         }  else {
             defaultLanguageCheckStrategy
         }
-}
-
-fun interface LanguageCheckStrategy {
-    fun isEnglishInput(): Boolean
-}
-
-val defaultLanguageCheckStrategy = LanguageCheckStrategy {
-    val locale = InputContext.getInstance().locale
-    val language = locale.language
-    val country = locale.country
-
-    language == Locale.ENGLISH.language
-            || country == Locale.US.country
-            || country == Locale.UK.country
-}
-
-val windowsLanguageCheckStrategy = LanguageCheckStrategy {
-    User32.INSTANCE.GetForegroundWindow()
-        ?.let { hwnd ->
-            LanguageUtil.INSTANCE.isEnglish(hwnd.pointer)
-        } ?: false
 }
