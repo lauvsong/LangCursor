@@ -16,7 +16,17 @@ object CursorColorService {
 
     fun toNotEnglishCursorColor() {
         val settings = AppSettingsState.instance
-        CursorColorUtil.setGlobalCursorColor(settings.cursorColor)
+        CursorColorUtil.setGlobalCursorColor(settings.nonEnglishCursorColor)
+    }
+
+    fun toCapsLockCursorColor() {
+        val settings = AppSettingsState.instance
+        CursorColorUtil.setGlobalCursorColor(settings.capsLockCursorColor)
+    }
+
+    fun toNotEnglishCapsLockCursorColor() {
+        val settings = AppSettingsState.instance
+        CursorColorUtil.setGlobalCursorColor(settings.nonEnglishCapsLockCursorColor)
     }
 
     fun toOriginalCursorColor() {

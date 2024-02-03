@@ -1,6 +1,6 @@
 package com.github.lauvsong.langcursor
 
-import com.github.lauvsong.langcursor.services.LanguageCheckService
+import com.github.lauvsong.langcursor.services.CheckService
 import com.github.lauvsong.langcursor.services.NotifyService
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.startup.StartupActivity
@@ -21,6 +21,6 @@ class ProjectOpenStartUpActivity : StartupActivity.DumbAware {
     }
 
     private fun initLanguageCheckService() {
-        LanguageCheckService
+        CheckService
     }
 }
