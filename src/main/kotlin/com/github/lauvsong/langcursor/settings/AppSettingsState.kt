@@ -15,16 +15,12 @@ import java.awt.Color
 class AppSettingsState : PersistentStateComponent<AppSettingsState> {
     var nonEnglishCursorColorAsRgb: Int = JBColor.RED.rgb
     var capsLockCursorColorAsRgb: Int = JBColor.BLUE.rgb
-    var nonEnglishCapsLockCursorColorAsRgb: Int = JBColor.MAGENTA.rgb
 
     val nonEnglishCursorColor: Color
         get() = Color(nonEnglishCursorColorAsRgb)
 
     val capsLockCursorColor: Color
         get() = Color(capsLockCursorColorAsRgb)
-
-    val nonEnglishCapsLockCursorColor: Color
-        get() = Color(nonEnglishCapsLockCursorColorAsRgb)
 
     override fun getState(): AppSettingsState {
         return this

@@ -23,12 +23,12 @@ class AppSettingsConfigurable : Configurable {
     override fun apply() {
         val settings = AppSettingsState.instance
         settings.nonEnglishCursorColorAsRgb = settingsComponent.nonEnglishCursorColor.selectedColor?.rgb ?: settings.nonEnglishCursorColorAsRgb
+        settings.capsLockCursorColorAsRgb = settingsComponent.capsLockCursorColor.selectedColor?.rgb ?: settings.capsLockCursorColorAsRgb
     }
 
     override fun reset() {
         val settings = AppSettingsState.instance
         settingsComponent.nonEnglishCursorColor.selectedColor = settings.nonEnglishCursorColor
         settingsComponent.capsLockCursorColor.selectedColor = settings.capsLockCursorColor
-        settingsComponent.notEnglishCapsLockCursorColor.selectedColor = settings.nonEnglishCapsLockCursorColor
     }
 }

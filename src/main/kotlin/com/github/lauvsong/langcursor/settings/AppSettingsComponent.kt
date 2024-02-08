@@ -10,7 +10,6 @@ class AppSettingsComponent {
         FormBuilder.createFormBuilder()
             .addLabeledComponent(JBLabel("Cursor color: "), nonEnglishCursorColor, 1, false)
             .addLabeledComponent(JBLabel("CapsLock cursor color: "), capsLockCursorColor, 2, false)
-            .addLabeledComponent(JBLabel("Non-English CapsLock cursor color"), nonEnglishCursorColor, 3, false)
             .addComponentFillVertically(JPanel(), 0)
             .panel
     }
@@ -19,5 +18,4 @@ class AppSettingsComponent {
 
     val capsLockCursorColor: ColorPanel = ColorPanel()
 
-    val notEnglishCapsLockCursorColor: ColorPanel = ColorPanel()
 }

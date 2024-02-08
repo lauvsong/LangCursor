@@ -1,12 +1,13 @@
-package com.github.lauvsong.langcursor.services
+package com.github.lauvsong.langcursor
 
 import com.github.lauvsong.langcursor.core.*
+import com.github.lauvsong.langcursor.services.CursorColorService
 import org.apache.commons.lang3.SystemUtils
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 
-object CheckService {
+object InputChecker {
 
     private val languageCheckStrategy: LanguageCheckStrategy = setLanguageCheckStrategy()
     private val capsLockCheckStrategy: CapsLockCheckStrategy = defaultCapsLockCheckStrategy
@@ -31,18 +32,12 @@ object CheckService {
     }
 
     private fun switchCursorColor() {
-        if (languageCheckStrategy.isEnglishInput()) {
-            if (capsLockCheckStrategy.isCapsLockOn()) {
-                CursorColorService.toCapsLockCursorColor()
-            } else {
-                CursorColorService.toOriginalCursorColor()
-            }
+        if (capsLockCheckStrategy.isCapsLockOn()) {
+            CursorColorService.toCapsLockCursorColor()
+        } else if (!languageCheckStrategy.isEnglishInput()) {
+            CursorColorService.toNonEnglishCursorColor()
         } else {
-            if (capsLockCheckStrategy.isCapsLockOn()) {
-                CursorColorService.toNotEnglishCapsLockCursorColor()
-            } else {
-                CursorColorService.toNotEnglishCursorColor()
-            }
+            CursorColorService.toOriginalCursorColor()
         }
     }
 
