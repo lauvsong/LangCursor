@@ -17,16 +17,18 @@ class AppSettingsConfigurable : Configurable {
 
     override fun isModified(): Boolean {
         val settings = AppSettingsState.instance
-        return settings.cursorColor != settingsComponent.cursorColor
+        return settings.nonEnglishCursorColor != settingsComponent.nonEnglishCursorColor
     }
 
     override fun apply() {
         val settings = AppSettingsState.instance
-        settings.cursorColorAsRgb = settingsComponent.cursorColor.selectedColor?.rgb ?: settings.cursorColorAsRgb
+        settings.nonEnglishCursorColorAsRgb = settingsComponent.nonEnglishCursorColor.selectedColor?.rgb ?: settings.nonEnglishCursorColorAsRgb
+        settings.capsLockCursorColorAsRgb = settingsComponent.capsLockCursorColor.selectedColor?.rgb ?: settings.capsLockCursorColorAsRgb
     }
 
     override fun reset() {
         val settings = AppSettingsState.instance
-        settingsComponent.cursorColor.selectedColor = settings.cursorColor
+        settingsComponent.nonEnglishCursorColor.selectedColor = settings.nonEnglishCursorColor
+        settingsComponent.capsLockCursorColor.selectedColor = settings.capsLockCursorColor
     }
 }

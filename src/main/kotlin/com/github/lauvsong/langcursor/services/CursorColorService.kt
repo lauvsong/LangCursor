@@ -14,9 +14,14 @@ object CursorColorService {
         .getColor(EditorColors.CARET_COLOR)
         ?: JBColor.BLACK
 
-    fun toNotEnglishCursorColor() {
+    fun toNonEnglishCursorColor() {
         val settings = AppSettingsState.instance
-        CursorColorUtil.setGlobalCursorColor(settings.cursorColor)
+        CursorColorUtil.setGlobalCursorColor(settings.nonEnglishCursorColor)
+    }
+
+    fun toCapsLockCursorColor() {
+        val settings = AppSettingsState.instance
+        CursorColorUtil.setGlobalCursorColor(settings.capsLockCursorColor)
     }
 
     fun toOriginalCursorColor() {
