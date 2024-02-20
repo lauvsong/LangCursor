@@ -1,6 +1,10 @@
 package com.github.lauvsong.langcursor
 
-import com.github.lauvsong.langcursor.core.*
+import com.github.lauvsong.langcursor.core.CapsLockCheckStrategy
+import com.github.lauvsong.langcursor.core.LanguageCheckStrategy
+import com.github.lauvsong.langcursor.core.defaultCapsLockCheckStrategy
+import com.github.lauvsong.langcursor.core.defaultLanguageCheckStrategy
+import com.github.lauvsong.langcursor.core.windowsLanguageCheckStrategy
 import com.github.lauvsong.langcursor.services.CursorColorService
 import org.apache.commons.lang3.SystemUtils
 import java.util.concurrent.Executors
@@ -37,7 +41,7 @@ object InputChecker {
         } else if (!languageCheckStrategy.isEnglishInput()) {
             CursorColorService.toNonEnglishCursorColor()
         } else {
-            CursorColorService.toOriginalCursorColor()
+            CursorColorService.toEnglishCursorColor()
         }
     }
 
