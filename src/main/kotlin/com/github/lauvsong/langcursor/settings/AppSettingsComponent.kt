@@ -10,7 +10,7 @@ class AppSettingsComponent {
         FormBuilder.createFormBuilder()
             .addLabeledComponent(JBLabel("English Cursor color: "), englishCursorColor, 1, false)
             .addLabeledComponent(JBLabel("Non-English Cursor color: "), nonEnglishCursorColor, 2, false)
-            .addLabeledComponent(JBLabel("CapsLock cursor color: "), capsLockCursorColor, 3, false)
+            .addLabeledComponent(JBLabel("CapsLock Cursor color: "), capsLockCursorColor, 3, false)
             .addComponentFillVertically(JPanel(), 0)
             .panel
     }
