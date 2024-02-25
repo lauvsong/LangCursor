@@ -4,24 +4,22 @@
 [![Version](https://img.shields.io/jetbrains/plugin/v/23464.svg)](https://plugins.jetbrains.com/plugin/23464)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/23464.svg)](https://plugins.jetbrains.com/plugin/23464)
 
-> LangCursor is an IntelliJ-based JetBrains IDE plugin designed to help developers working with non-English languages avoid typos by automatically changing the cursor color.
+> LangCursor is an IntelliJ-based JetBrains IDE plugin designed to help developers especially working with non-English languages avoid typos by automatically changing the cursor color.
 
 ![](https://github.com/lauvsong/LangCursor/blob/main/medias/langcursor.gif)
 
 <!-- Plugin description -->
 
-## What's LangCursor? 🤔
-
-LangCursor is a plugin designed specifically **for developers who work in non-English languages 🌍**.  
+## What's LangCursor?
+Designed specially **for developers who work in non-English languages 🌍**. <br/>
 It addresses the common pain point of typos caused by language switching.
 
-### Cursor Color Change for Non-English Languages 🔵🔴🟢
-- **Automatic Cursor Color Change**
-  - The primary function of LangCursor is to help you avoid typos. It does this by automatically changing the color of your cursor when you're typing in a non-English language.
-- **Vim-friendly**
-  - LangCursor also integrates seamlessly with the 'Insert Mode' cursor, a feature commonly used in conjunction with Vim emulation plugins.
+### ⚡Avoid typo by changing cursor color
 
-### Supported Environments 🌐
+- **🎨 Switch Cursor Color by input status:** Changes for English/non-English input and Capslock status.
+- **⌨️ Vim-Friendly:** Supports Vim's insert mode.
+
+## Supported Environments
 - Supported OS: Windows, macOS
 - Not using any third-party Input Method editor(IME), opposed to the default OS input methods
 
