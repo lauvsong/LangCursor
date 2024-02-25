@@ -13,7 +13,7 @@ import java.awt.Color
     storages = [Storage("AppSettingsState.xml")]
 )
 class AppSettingsState : PersistentStateComponent<AppSettingsState> {
-    var englishCursorColorAsRgb: Int = JBColor.LIGHT_GRAY.rgb
+    var englishCursorColorAsRgb: Int = JBColor.GRAY.rgb
     var nonEnglishCursorColorAsRgb: Int = JBColor.RED.rgb
     var capsLockCursorColorAsRgb: Int = JBColor.BLUE.rgb
 
