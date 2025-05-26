@@ -7,11 +7,15 @@ import org.apache.commons.lang3.SystemUtils
 
 class ProjectOpenStartUpActivity : StartupActivity.DumbAware {
 
+    companion object {
+        var inputCheckScheduler: InputCheckScheduler? = null
+    }
+
     override fun runActivity(project: Project) {
         if (isNotSupportedOs()) {
             NotifyService.notifyNotSupportedOs(project)
+            return 
         }
-
        initLanguageCheckService()
     }
 
@@ -20,6 +24,7 @@ class ProjectOpenStartUpActivity : StartupActivity.DumbAware {
     }
 
     private fun initLanguageCheckService() {
-        InputChecker
+        inputCheckScheduler = InputCheckScheduler(InputChecker)
+        inputCheckScheduler?.start()
     }
 }

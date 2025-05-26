@@ -6,6 +6,6 @@ class IdeLifeCycleListener : AppLifecycleListener {
 
     override fun appClosing() {
         super.appClosing()
-        InputChecker.shutdown()
+        ProjectOpenStartUpActivity.inputCheckScheduler?.stop()
     }
 }

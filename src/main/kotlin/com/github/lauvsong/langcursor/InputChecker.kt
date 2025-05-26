@@ -7,35 +7,14 @@ import com.github.lauvsong.langcursor.core.defaultLanguageCheckStrategy
 import com.github.lauvsong.langcursor.core.windowsLanguageCheckStrategy
 import com.github.lauvsong.langcursor.services.CursorColorService
 import org.apache.commons.lang3.SystemUtils
-import java.util.concurrent.Executors
-import java.util.concurrent.ScheduledExecutorService
-import java.util.concurrent.TimeUnit
 
 object InputChecker {
 
     private val languageCheckStrategy: LanguageCheckStrategy = setLanguageCheckStrategy()
     private val capsLockCheckStrategy: CapsLockCheckStrategy = defaultCapsLockCheckStrategy
-    private val scheduledExecutor: ScheduledExecutorService = Executors.newScheduledThreadPool(1)
-    private const val INTERVAL_MILLIS = 200L
 
-    init {
-        start()
-    }
-
-    private fun start() {
-        scheduledExecutor.scheduleAtFixedRate(
-            { switchCursorColor() },
-            0,
-            INTERVAL_MILLIS,
-            TimeUnit.MILLISECONDS
-        )
-    }
-
-    fun shutdown() {
-        scheduledExecutor.shutdown()
-    }
-
-    private fun switchCursorColor() {
+    // Make this method public
+    fun switchCursorColor() {
         if (capsLockCheckStrategy.isCapsLockOn()) {
             CursorColorService.toCapsLockCursorColor()
         } else if (!languageCheckStrategy.isEnglishInput()) {
